@@ -1,25 +1,83 @@
 var games = [
-    {name: "Flappy Bird", path: "games/flappybird/index.html"}
+    {
+        name: "APEX CITY: OVERDRIVE",
+        desc: "Definitive 10-AI Edition — 3D Open World, 8 Weapons, Drivable Cars, Tanks & Choppers, 5-Star Police, Story Missions & Radio Stations!",
+        badge: "👑 10-AI FLAGSHIP",
+        path: "games/gta/index.html"
+    },
+    {
+        name: "Flappy Bird",
+        desc: "Classic endless arcade flapping game built on PlayCanvas.",
+        badge: "ARCADE",
+        path: "games/flappybird/index.html"
+    }
 ];
 
 var glist = document.getElementById("gameslist");
 
 for (let item of games) {
-    let a = document.createElement("a");
-    a.className = "gamebutton";
-    var title = document.createElement("gamebutton");
-    title.className = "gamebutton";
-    title.textContent = item.name;
-    a.appendChild(title);
-    a.href = "#";
-    a.onclick = function(e) {
-        if (e.target == a || e.target.tagName != "A") {
-            e.preventDefault();
-            loadGame(item.path)
-        }
-    }
+    let card = document.createElement("div");
+    card.style.background = "rgba(255, 255, 255, 0.06)";
+    card.style.border = "1px solid rgba(255, 255, 255, 0.12)";
+    card.style.borderRadius = "10px";
+    card.style.padding = "16px 20px";
+    card.style.display = "flex";
+    card.style.justifyContent = "space-between";
+    card.style.alignItems = "center";
+    card.style.cursor = "pointer";
+    card.style.transition = "all 0.2s ease";
 
-    glist.appendChild(a);
+    card.onmouseover = () => { card.style.background = "rgba(255, 71, 87, 0.15)"; card.style.borderColor = "#ff4757"; };
+    card.onmouseout = () => { card.style.background = "rgba(255, 255, 255, 0.06)"; card.style.borderColor = "rgba(255, 255, 255, 0.12)"; };
+
+    let left = document.createElement("div");
+    left.style.textAlign = "left";
+
+    let badge = document.createElement("div");
+    badge.textContent = item.badge;
+    badge.style.fontSize = "11px";
+    badge.style.fontWeight = "bold";
+    badge.style.color = "#00d2d3";
+    badge.style.letterSpacing = "1px";
+    badge.style.marginBottom = "4px";
+
+    let title = document.createElement("div");
+    title.textContent = item.name;
+    title.style.fontSize = "20px";
+    title.style.fontWeight = "bold";
+    title.style.color = "#fff";
+
+    let desc = document.createElement("div");
+    desc.textContent = item.desc;
+    desc.style.fontSize = "13px";
+    desc.style.color = "#a4b0be";
+    desc.style.marginTop = "4px";
+
+    left.appendChild(badge);
+    left.appendChild(title);
+    left.appendChild(desc);
+
+    let btn = document.createElement("button");
+    btn.textContent = "PLAY ▶";
+    btn.style.background = "linear-gradient(135deg, #2ed573, #10ac84)";
+    btn.style.color = "#fff";
+    btn.style.border = "none";
+    btn.style.padding = "10px 22px";
+    btn.style.borderRadius = "8px";
+    btn.style.fontSize = "14px";
+    btn.style.fontWeight = "bold";
+    btn.style.cursor = "pointer";
+    btn.style.boxShadow = "0 4px 12px rgba(46, 213, 115, 0.4)";
+
+    card.appendChild(left);
+    card.appendChild(btn);
+
+    card.onclick = function(e) {
+        e.preventDefault();
+        loadGame(item.path);
+    };
+
+    glist.appendChild(card);
 }
 
 function loadGame(path) {

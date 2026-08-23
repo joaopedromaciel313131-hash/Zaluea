@@ -1,6 +1,11 @@
 {
+  "name": "zaluea",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
   "dependencies": {
-    "bare-server-node": "github:tomphttp/bare-server-node",
     "node-static": "^0.7.11"
   }
 }
